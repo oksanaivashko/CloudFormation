@@ -1,0 +1,13 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "This template creates EC2 Instance"
+Resources: 
+  WebEc2Instance:               # Logical Name or Logical ID. Logical ID has to be unique within your temple 
+    Type: "AWS::EC2::Instance"  # Key and Value is Reserved (Pre Define by AWS)
+    Properties:    
+      AvailabilityZone: us-east-1b
+      ImageId: "ami-026b57f3c383c2eec"
+      InstanceType: "t2.micro"
+      KeyName: "WindowsKey"
+      SecurityGroupIds:
+        - !Ref SSHSecurityGroup
+        

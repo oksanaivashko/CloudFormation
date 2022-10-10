@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "This template creates EC2 Instance"
+Resources: 
+  WebEc2Instance:               
+    Type: "AWS::EC2::Instance" 
+    Properties:                 
+      ImageId: "ami-026b57f3c383c2eec"
+      InstanceType: "t2.micro"
+      UserData: 
+        Fn::Base64:  
+          #!/bin/bash
+          sudo yum install httpd -y  
+          sudo systemctl start
+          sudo systemctl enable httpd
+          sudo echo "Hello from web 1" > /var/www/html/index.html
+          sudo chown -R apache:apache /var/www/html
+      KeyName: "WindowsKey"
+        
+        
+        
+     
