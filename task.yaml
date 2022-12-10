@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "This template creates EC2 Instance"
+Resources: 
+  WebEc2Instance:               # Logical Name or Logical ID. Logical ID has to be unique within your temple 
+    Type: "AWS::EC2::Instance"  # Key and Value is Reserved (Pre Define by AWS)
+    Properties:                 # defines all details (what security group, what type of Instance, load balncer, EBS volume) 
+      ImageId: "ami-0beaa649c482330f7"
+      InstanceType: "t2.micro"
+      KeyName: "WindowsKey"
+      SecurityGroupIds: 
+        - !Ref WebEc2InstanceSecurityGroup                  # Reference to the resource, Reference to the Logical ID
+
+  WebEc2InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties: 
+      GroupDescription: "This is a security group for Bastoin Instance"
+      GroupName: "Bastion"
+      VpcId: "vpc-0166d49255c12d353"
+
+#  ImageId:
+#    Type: AWS::EC2::Image::Id
+#    Type: "AWS::EC2::Instance"  
+#    Properties:                 
+#      Instance-id: "i-0e965ba6fb5fa78e0"
+#      name: "Golde-ami"
